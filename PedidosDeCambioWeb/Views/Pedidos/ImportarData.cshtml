@@ -1,0 +1,81 @@
+﻿@model IEnumerable<PedidosDeCambioWeb.Models.Pedido>
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponsableId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Causante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Protocolo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => UserManager.FindByIdAsync(item.ResponsableId.ToString()).Result.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Causante.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accion.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Protocolo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col">
+        <form class="form" asp-action="ImportarGuardar">
+            <div class="form-group">
+                <textarea name="content" class="form-control">@ViewBag.approvedStrings</textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Guardar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h3>Not approved strings</h3>
+        <h4>Explain</h4>
+        @foreach (var cadena in ViewBag.notApprovedStringsWithErrorMessages)
+        {
+            <pre>@cadena</pre>
+        }
+        <h4>Copy them</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <textarea class="form-control">@ViewBag.notApprovedStrings</textarea>
+    </div>
+</div>
