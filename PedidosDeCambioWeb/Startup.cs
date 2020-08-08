@@ -43,7 +43,7 @@ namespace PedidosDeCambioWeb
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
             services.AddRazorPages(options =>
             {
