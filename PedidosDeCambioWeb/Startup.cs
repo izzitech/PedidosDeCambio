@@ -28,7 +28,14 @@ namespace PedidosDeCambioWeb
         {
             services.AddDbContext<PedidosContext>(o =>
             {
-                o.UseNpgsql(Configuration["PedidosDb"]);
+                if (Configuration["PedidosDb"] != null)
+                {
+                    o.UseNpgsql(Configuration["PedidosDb"]);
+                }
+                else
+                {
+                    o.UseNpgsql(Configuration.GetConnectionString("PedidosDb"));
+                }
             });
 
             services.AddIdentity<IdentityUser, IdentityRole>()
