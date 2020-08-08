@@ -20,6 +20,9 @@ namespace PedidosDeCambioWeb.Controllers
         private readonly PedidosContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger _logger;
+
+        private readonly int DefaultPageSize = 10;
+
         public PedidosController(PedidosContext context, UserManager<IdentityUser> userManager, ILogger<PedidosController> logger)
         {
             _context = context;
@@ -27,6 +30,7 @@ namespace PedidosDeCambioWeb.Controllers
             _logger = logger;
         }
 
+    /*
         // GET: Pedidos
         public async Task<IActionResult> Index()
         {
@@ -37,6 +41,27 @@ namespace PedidosDeCambioWeb.Controllers
                 .OrderByDescending(p => p.Fecha);
             return View(await pedidosContext.ToListAsync());
         }
+    */
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int pagina, int? mostradosEnPagina){
+            if(pagina < 1) pagina = 1;
+            int _mostradosEnPagina = mostradosEnPagina??DefaultPageSize;
+            int pedidosTotal =  _context.Pedidos.Count();
+
+            ViewBag.PedidosTotal = pedidosTotal;
+            ViewBag.PaginasTotal = pedidosTotal / _mostradosEnPagina;
+            ViewBag.PaginaActual = pagina;
+            
+
+            var pedidosContext = 
+                _context.Pedidos
+                .Include(p => p.Accion)
+                .Include(p => p.Causante)
+                .OrderByDescending(p => p.Fecha).Skip((pagina - 1) * _mostradosEnPagina).Take(_mostradosEnPagina);
+            return View(await pedidosContext.ToListAsync());
+        }
+
 
         // GET: Pedidos/Details/5
         public async Task<IActionResult> Details(int? id)
