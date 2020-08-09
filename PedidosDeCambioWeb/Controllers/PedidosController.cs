@@ -50,7 +50,7 @@ namespace PedidosDeCambioWeb.Controllers
             int pedidosTotal =  _context.Pedidos.Count();
 
             ViewBag.PedidosTotal = pedidosTotal;
-            ViewBag.PaginasTotal = pedidosTotal / _mostradosEnPagina;
+            ViewBag.PaginasTotal = decimal.Round((decimal)pedidosTotal / (decimal)_mostradosEnPagina, 0);
             ViewBag.PaginaActual = pagina;
             
 
