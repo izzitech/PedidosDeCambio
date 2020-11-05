@@ -4,15 +4,24 @@
 
 <div class="text-center">
     <div class="row">
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 mb-3 mt-2">
             <h1 class="display-4">Pedidos de cambio</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 mb-4">
-            <a asp-controller="Pedidos" asp-action="create" class="btn btn-outline-primary col-md-12 mb-5 mt-5">Agregar pedido</a>
-            <ul class="list-group">
+        <div class="col-md"></div>
+        <div class="col-md mb-4">
+            <div class="row mt-2">
+                <div class="col-md">
+                    <a asp-controller="Pedidos" asp-action="create" class="btn btn-primary btn-block">Agregar pedido</a>
+                    </div>
+                </div>
+            <div class="row mt-2">
+                <div class="col-md">
+                    <a asp-controller="Pedidos" asp-action="index" class="btn btn-outline-primary btn-block">Ver pedidos</a>
+                </div>
+            </div>
+            <ul class="list-group mt-2">
                 <li class="list-group-item">
                     <a asp-controller="Acciones">Acciones</a>
                 </li>
@@ -27,6 +36,6 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md"></div>
     </div>
 </div>

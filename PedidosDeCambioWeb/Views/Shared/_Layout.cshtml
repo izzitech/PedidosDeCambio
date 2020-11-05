@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Pedidos" asp-action="Index">Pedidos De Cambio</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pedidos De Cambio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,10 +21,10 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Inicio</a>
+                            <a class="nav-link text-dark" asp-controller="Pedidos" asp-action="Index">Ver</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-secondary nav-link text-white" asp-controller="Pedidos" asp-action="Create">Agregar pedido<i class="ml-1 fas fa-plus"></i></a>
+                            <a class="nav-link text-dark" asp-controller="Pedidos" asp-action="Create">Agregar</a>
                         </li>
                     </ul>
                 </div>

@@ -47,7 +47,7 @@ namespace PedidosDeCambioWeb
             
             services.AddRazorPages(options =>
             {
-                options.Conventions.AddPageRoute("/Pedidos/Index","/");
+                // options.Conventions.AddPageRoute("/Pedidos/Index","/");
             });
 
             services.AddTransient<UserManager<IdentityUser>>();
